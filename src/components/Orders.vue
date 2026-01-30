@@ -57,7 +57,8 @@
                 </span>
               </td>
               <td class="actions-cell">
-                <span class="static-text">View Only</span>
+                <button class="btn-view" disabled title="Disabled in static view">View</button>
+                <button class="btn-cancel" disabled title="Disabled in static view">Cancel</button>
               </td>
             </tr>
           </tbody>
@@ -80,8 +81,17 @@ export default {
   },
   emits: ['update-status', 'cancel-order'],
   setup(props, { emit }) {
+    const searchQuery = ref('');
+    const filterStatus = ref('all');
+
     const filteredOrders = computed(() => {
-      return props.orders;
+      // simple filtering placeholder (no UI controls yet)
+      if (!props.orders) return [];
+      return props.orders.filter(o => {
+        if (filterStatus.value !== 'all' && o.status !== filterStatus.value) return false;
+        if (searchQuery.value && !o.student.toLowerCase().includes(searchQuery.value.toLowerCase())) return false;
+        return true;
+      });
     });
 
     const pendingCount = computed(() => props.orders.filter(o => o.status === 'pending').length);
