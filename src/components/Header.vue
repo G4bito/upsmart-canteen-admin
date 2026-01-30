@@ -28,7 +28,6 @@ import { ref } from 'vue'
 export default {
   name: 'Header',
   setup() {
-    // Static mode - no interactive functionality
     return {};
   }
 }

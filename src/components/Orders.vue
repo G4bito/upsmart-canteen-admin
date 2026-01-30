@@ -3,7 +3,7 @@
     <div class="orders-container">
       <div class="orders-header">
         <h2 class="section-title">ORDERS MANAGEMENT</h2>
-        <p class="static-notice">📌 View Only - Static Dashboard</p>
+        <p class="static-notice">📌 Dashboard</p>
       </div>
 
       <div class="orders-stats">
@@ -90,15 +90,15 @@ export default {
     const completedCount = computed(() => props.orders.filter(o => o.status === 'completed').length);
 
     const updateStatus = (orderId, newStatus) => {
-      // Static mode - no actions
+   
     };
 
     const cancelOrderConfirm = (orderId) => {
-      // Static mode - no actions
+     
     };
 
     const viewDetails = (order) => {
-      // Static mode - no actions
+      
     };
 
     return {

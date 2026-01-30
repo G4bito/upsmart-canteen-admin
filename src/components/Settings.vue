@@ -42,23 +42,23 @@ export default {
     });
 
     const saveSetting = (category) => {
-      // Static mode - no save functionality
+    
     };
 
     const changePassword = () => {
-      // Static mode - no actions
+    
     };
 
     const resetDailyData = () => {
-      // Static mode - no actions
+ 
     };
 
     const backupData = () => {
-      // Static mode - no actions
+   
     };
 
     const clearAllData = () => {
-      // Static mode - no actions
+   
     };
 
     return {
