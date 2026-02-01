@@ -32,7 +32,6 @@
         <Settings v-if="activeMenu === 'settings'" @save-settings="saveSettings" />
       </main>
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -46,7 +45,6 @@ import MenuManagement from './components/MenuManagement.vue'
 import Orders from './components/Orders.vue'
 import Analytics from './components/Analytics.vue'
 import Settings from './components/Settings.vue'
-import Footer from './components/Footer.vue'
 
 export default {
   components: {
@@ -57,8 +55,7 @@ export default {
     MenuManagement,
     Orders,
     Analytics,
-    Settings,
-    Footer
+    Settings
   },
   setup() {
     const activeMenu = ref('dashboard');
