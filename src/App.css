@@ -1,28 +1,4 @@
-:root {
-  --upang-green: #2D5016;
-  --upang-gold: #C8A961;
-  --upang-dark-green: #1a3308;
-  --cream: #F5F1E8;
-  --off-white: #FDFCF9;
-  --charcoal: #2C2C2C;
-  --mid-gray: #6B6B6B;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
-  background: var(--cream);
-  color: var(--charcoal);
-  line-height: 1.5;
-}
-
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;600;800&display=swap');
+/* Component-specific styles - Global base styles are in index.css */
 
 /* Top Bar */
 .top-bar {

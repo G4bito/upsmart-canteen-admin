@@ -17,10 +17,6 @@
         <span class="stat-mini-label">Meals</span>
         <span class="stat-mini-value">{{ categoryCount('meals') }}</span>
       </div>
-      <div class="stat-mini">
-        <span class="stat-mini-label">Snacks & Drinks</span>
-        <span class="stat-mini-value">{{ categoryCount('snacks') + categoryCount('drinks') }}</span>
-      </div>
     </div>
 
     <div class="menu-grid">
@@ -37,8 +33,15 @@
             <h3 class="item-name">{{ item.name }}</h3>
             <span class="item-category">{{ item.category.toUpperCase() }}</span>
           </div>
+          <button 
+            class="availability-badge" 
+            :class="{ 'available': item.available, 'unavailable': !item.available }"
+            @click="toggleAvailability(item.id)"
+            :title="item.available ? 'Click to mark as unavailable' : 'Click to mark as available'"
+          >
+            {{ item.available ? '✓ Available' : '✗ Unavailable' }}
+          </button>
         </div>
-
         <div class="item-details">
           <div class="detail-row">
             <label>Price:</label>
@@ -47,7 +50,7 @@
           <div class="detail-row">
             <label>Stock:</label>
             <span :class="['detail-value', { 'low-stock': item.stock < 20 }]">
-              {{ item.stock }} units
+              {{ item.stock }}
             </span>
           </div>
           <div class="detail-row">
@@ -57,7 +60,7 @@
         </div>
 
         <div v-if="item.stock < 20" class="stock-warning">
-          ⚠️ Low Stock Alert
+          ⚠️ Low Stock
         </div>
       </div>
     </div>
@@ -82,9 +85,17 @@ export default {
       return props.menuItems.filter(item => item.category === category).length;
     };
 
+    const toggleAvailability = (itemId) => {
+      const item = props.menuItems.find(i => i.id === itemId);
+      if (item) {
+        item.available = !item.available;
+      }
+    };
+
     return {
       lowStockCount,
-      categoryCount
+      categoryCount,
+      toggleAvailability
     };
   }
 }
@@ -158,6 +169,8 @@ export default {
   padding: 20px;
   transition: all 0.3s;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-item-card:hover {
@@ -165,8 +178,46 @@ export default {
   box-shadow: 8px 8px 0 var(--upang-green);
 }
 
+.availability-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 2px solid var(--charcoal);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.availability-badge.available {
+  background: #4CAF50;
+  color: white;
+  border-color: #2E7D32;
+}
+
+.availability-badge.available:hover {
+  background: #388E3C;
+  transform: scale(1.05);
+}
+
+.availability-badge.unavailable {
+  background: #F44336;
+  color: white;
+  border-color: #C62828;
+}
+
+.availability-badge.unavailable:hover {
+  background: #D32F2F;
+  transform: scale(1.05);
+}
+
 .item-header {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
   margin-bottom: 16px;
 }
 

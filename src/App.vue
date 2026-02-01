@@ -65,15 +65,15 @@ export default {
     const sidebarOpen = ref(true);
 
     const menuItems = ref([
-      { id: 1, name: 'PORK SISIG', price: 85, category: 'meals', stock: 45, emoji: '🍲', tag: 'BESTSELLER' },
-      { id: 2, name: 'ADOBO MEAL', price: 70, category: 'meals', stock: 32, emoji: '🍗', tag: null },
-      { id: 3, name: 'BEEF TAPA', price: 95, category: 'meals', stock: 28, emoji: '🥩', tag: 'NEW' },
-      { id: 4, name: 'PALABOK', price: 60, category: 'meals', stock: 40, emoji: '🍜', tag: null },
-      { id: 5, name: 'CLUBHOUSE', price: 75, category: 'snacks', stock: 35, emoji: '🥪', tag: 'POPULAR' },
-      { id: 6, name: 'BUKO JUICE', price: 35, category: 'drinks', stock: 50, emoji: '🥥', tag: null },
-      { id: 7, name: 'PANCIT CANTON', price: 55, category: 'meals', stock: 38, emoji: '🍝', tag: null },
-      { id: 8, name: 'LUMPIA', price: 40, category: 'snacks', stock: 42, emoji: '🥟', tag: null },
-      { id: 9, name: 'HALO-HALO', price: 50, category: 'snacks', stock: 55, emoji: '🍧', tag: 'POPULAR' }
+      { id: 1, name: 'PORK SISIG', price: 85, category: 'meals', stock: 45, emoji: '🍲', tag: 'BESTSELLER', stall: 'Filipino Cuisine', available: true },
+      { id: 2, name: 'ADOBO MEAL', price: 70, category: 'meals', stock: 32, emoji: '🍗', tag: null, stall: 'Filipino Cuisine', available: true },
+      { id: 3, name: 'BEEF TAPA', price: 95, category: 'meals', stock: 28, emoji: '🥩', tag: 'NEW', stall: 'Filipino Cuisine', available: true },
+      { id: 4, name: 'PALABOK', price: 60, category: 'meals', stock: 40, emoji: '🍜', tag: null, stall: 'Filipino Cuisine', available: true },
+      { id: 5, name: 'CLUBHOUSE', price: 75, category: 'snacks', stock: 35, emoji: '🥪', tag: 'POPULAR', stall: 'Sandwich Bar', available: true },
+      { id: 6, name: 'BUKO JUICE', price: 35, category: 'drinks', stock: 50, emoji: '🥥', tag: null, stall: 'Beverage Station', available: true },
+      { id: 7, name: 'PANCIT CANTON', price: 55, category: 'meals', stock: 38, emoji: '🍝', tag: null, stall: 'Noodle Stall', available: true },
+      { id: 8, name: 'LUMPIA', price: 40, category: 'snacks', stock: 42, emoji: '🥟', tag: null, stall: 'Filipino Cuisine', available: true },
+      { id: 9, name: 'HALO-HALO', price: 50, category: 'snacks', stock: 55, emoji: '🍧', tag: 'POPULAR', stall: 'Dessert Corner', available: true }
     ]);
 
     const allOrders = ref([

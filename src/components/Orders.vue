@@ -3,7 +3,6 @@
     <div class="orders-container">
       <div class="orders-header">
         <h2 class="section-title">ORDERS MANAGEMENT</h2>
-        <p class="static-notice">📌 Dashboard</p>
       </div>
 
       <div class="orders-stats">

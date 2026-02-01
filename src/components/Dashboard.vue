@@ -2,7 +2,7 @@
   <section class="dashboard-section">
     <div class="dashboard-container">
       <div class="dashboard-header">
-        <h2 class="section-title">ADMIN DASHBOARD</h2>
+        <h2 class="section-title">VENDOR DASHBOARD</h2>
         <p class="date-display">{{ currentDate }}</p>
       </div>
 
