@@ -1,4 +1,4 @@
-# UPSmart Canteen Admin Dashboard
+# UPSmart Canteen Vendor Dashboard
 
-A comprehensive admin dashboard for managing a campus canteen ordering system
+A comprehensive vendor dashboard for managing a campus canteen ordering system
 
