@@ -85,7 +85,7 @@ export default {
     const filterStatus = ref('all');
 
     const filteredOrders = computed(() => {
-      // simple filtering placeholder (no UI controls yet)
+
       if (!props.orders) return [];
       return props.orders.filter(o => {
         if (filterStatus.value !== 'all' && o.status !== filterStatus.value) return false;

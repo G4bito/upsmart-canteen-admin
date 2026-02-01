@@ -10,7 +10,7 @@
         <div class="stat-card">
           <div class="stat-header">
             <h3 class="stat-label">Total Orders</h3>
-            <img src="/images/icon-orders.svg" alt="Orders" class="stat-icon">
+            <span class="stat-emoji" aria-hidden="true">🛒</span>
           </div>
           <p class="stat-value">{{ stats.totalOrders }}</p>
           <p class="stat-subtext">Today's orders</p>
@@ -18,7 +18,7 @@
         <div class="stat-card">
           <div class="stat-header">
             <h3 class="stat-label">Completed</h3>
-            <img src="/images/icon-completed.svg" alt="Completed" class="stat-icon">
+            <span class="stat-emoji" aria-hidden="true">✅</span>
           </div>
           <p class="stat-value">{{ stats.completed }}</p>
           <p class="stat-subtext">Ready & picked up</p>
@@ -26,7 +26,7 @@
         <div class="stat-card">
           <div class="stat-header">
             <h3 class="stat-label">In Progress</h3>
-            <img src="/images/icon-progress.svg" alt="In Progress" class="stat-icon">
+            <span class="stat-emoji" aria-hidden="true">⏳</span>
           </div>
           <p class="stat-value">{{ stats.preparing }}</p>
           <p class="stat-subtext">Pending & preparing</p>
@@ -34,7 +34,7 @@
         <div class="stat-card">
           <div class="stat-header">
             <h3 class="stat-label">Today's Revenue</h3>
-            <img src="/images/icon-revenue.svg" alt="Revenue" class="stat-icon">
+            <span class="stat-emoji" aria-hidden="true">💰</span>
           </div>
           <p class="stat-value">₱{{ stats.totalRevenue }}</p>
           <p class="stat-subtext">Avg: ₱{{ stats.avgOrderValue }}/order</p>
@@ -77,10 +77,10 @@
       <div class="quick-actions">
         <h3 class="quick-actions-title">Quick Actions</h3>
         <div class="actions-grid">
-          <button class="action-btn action-orders"><img src="/images/icon-orders.svg" alt="Orders"> View All Orders</button>
-          <button class="action-btn action-menu"><img src="/images/icon-menu.svg" alt="Menu"> Manage Menu</button>
-          <button class="action-btn action-stock"><img src="/images/icon-stock.svg" alt="Stock"> Check Inventory</button>
-          <button class="action-btn action-settings"><img src="/images/icon-settings.svg" alt="Settings"> Settings</button>
+          <button class="action-btn action-orders"><span class="action-emoji">🛒</span> View All Orders</button>
+          <button class="action-btn action-menu"><span class="action-emoji">🍽️</span> Manage Menu</button>
+          <button class="action-btn action-stock"><span class="action-emoji">📦</span> Check Inventory</button>
+          <button class="action-btn action-settings"><span class="action-emoji">⚙️</span> Settings</button>
         </div>
       </div>
     </div>
@@ -193,10 +193,11 @@ export default {
   letter-spacing: 0.5px;
 }
 
-.stat-icon {
-  width: 32px;
-  height: 32px;
-  stroke: var(--upang-green);
+.stat-emoji {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stat-value {
@@ -408,10 +409,11 @@ export default {
   gap: 8px;
 }
 
-.action-btn img {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
+.action-emoji {
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-btn:hover {

@@ -4,7 +4,7 @@
       <div class="logo-area">
         <img src="/images/UPANGLOGO.png" alt="PHINMA UPang Logo" class="seal-logo" />
         <div class="brand">
-          UPSMART
+          UPSMART CANTEEN
           <span>ADMIN DASHBOARD</span>
         </div>
       </div>
