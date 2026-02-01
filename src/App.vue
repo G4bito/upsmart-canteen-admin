@@ -28,7 +28,7 @@
           @delete-item="deleteMenuItem"
           @add-item="addMenuItem"
         />
-        <Analytics v-if="activeMenu === 'analytics'" :stats="analyticsData" />
+        <Analytics v-if="activeMenu === 'analytics'" :stats="null" />
         <Settings v-if="activeMenu === 'settings'" @save-settings="saveSettings" />
       </main>
     </div>
@@ -77,12 +77,12 @@ export default {
     ]);
 
     const allOrders = ref([
-      { id: '#ORD-001', student: 'Juan De La Cruz', studentId: '2024-001234', items: [{ name: 'PORK SISIG', qty: 1, price: 85 }], total: 85, status: 'completed', time: '11:30 AM', date: '2026-01-30' },
-      { id: '#ORD-002', student: 'Maria Santos', studentId: '2024-005678', items: [{ name: 'BEEF TAPA', qty: 1, price: 95 }, { name: 'BUKO JUICE', qty: 2, price: 35 }], total: 165, status: 'ready', time: '11:45 AM', date: '2026-01-30' },
-      { id: '#ORD-003', student: 'Carlos Reyes', studentId: '2024-009012', items: [{ name: 'CLUBHOUSE', qty: 1, price: 75 }], total: 75, status: 'preparing', time: '12:00 PM', date: '2026-01-30' },
-      { id: '#ORD-004', student: 'Ana Cruz', studentId: '2024-003456', items: [{ name: 'PANCIT CANTON', qty: 2, price: 55 }, { name: 'LUMPIA', qty: 1, price: 40 }], total: 150, status: 'pending', time: '12:05 PM', date: '2026-01-30' },
-      { id: '#ORD-005', student: 'Pedro Gomez', studentId: '2024-007890', items: [{ name: 'HALO-HALO', qty: 3, price: 50 }], total: 150, status: 'pending', time: '12:08 PM', date: '2026-01-30' },
-      { id: '#ORD-006', student: 'Sofia Torres', studentId: '2024-002345', items: [{ name: 'ADOBO MEAL', qty: 1, price: 70 }, { name: 'BUKO JUICE', qty: 1, price: 35 }], total: 105, status: 'ready', time: '12:10 PM', date: '2026-01-30' }
+      { id: '#ORD-001', teacher: 'Juan De La Cruz', teacherId: '2024-001234', items: [{ name: 'PORK SISIG', qty: 1, price: 85 }], total: 85, status: 'completed', time: '11:30 AM', date: '2026-01-30' },
+      { id: '#ORD-002', teacher: 'Maria Santos', teacherId: '2024-005678', items: [{ name: 'BEEF TAPA', qty: 1, price: 95 }, { name: 'BUKO JUICE', qty: 2, price: 35 }], total: 165, status: 'ready', time: '11:45 AM', date: '2026-01-30' },
+      { id: '#ORD-003', teacher: 'Carlos Reyes', teacherId: '2024-009012', items: [{ name: 'CLUBHOUSE', qty: 1, price: 75 }], total: 75, status: 'preparing', time: '12:00 PM', date: '2026-01-30' },
+      { id: '#ORD-004', teacher: 'Ana Cruz', teacherId: '2024-003456', items: [{ name: 'PANCIT CANTON', qty: 2, price: 55 }, { name: 'LUMPIA', qty: 1, price: 40 }], total: 150, status: 'pending', time: '12:05 PM', date: '2026-01-30' },
+      { id: '#ORD-005', teacher: 'Pedro Gomez', teacherId: '2024-007890', items: [{ name: 'HALO-HALO', qty: 3, price: 50 }], total: 150, status: 'pending', time: '12:08 PM', date: '2026-01-30' },
+      { id: '#ORD-006', teacher: 'Sofia Torres', teacherId: '2024-002345', items: [{ name: 'ADOBO MEAL', qty: 1, price: 70 }, { name: 'BUKO JUICE', qty: 1, price: 35 }], total: 105, status: 'ready', time: '12:10 PM', date: '2026-01-30' }
     ]);
 
     const dashboardStats = computed(() => {
@@ -118,14 +118,6 @@ export default {
         .sort((a, b) => b.qty - a.qty)
         .slice(0, 5);
     });
-
-    const analyticsData = computed(() => ({
-      dailyOrders: [6, 12, 9, 15, 18, 14, 20],
-      dailyRevenue: [420, 840, 630, 1050, 1260, 980, 1400],
-      hourlyData: [2, 5, 8, 12, 15, 18, 14, 10, 8, 6],
-      paymentMethods: { cash: 60, gcash: 25, bank: 15 },
-      departments: { CAHS: 25, CAS: 20, CITE: 18, CEA: 12, others: 5 }
-    }));
 
     const updateOrderStatus = (orderId, newStatus) => {
       const order = allOrders.value.find(o => o.id === orderId);
@@ -175,7 +167,6 @@ export default {
       dashboardStats,
       recentOrders,
       topItems,
-      analyticsData,
       updateOrderStatus,
       cancelOrder,
       editMenuItem,
@@ -207,7 +198,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 0; /* reset when sidebar is closed */
+  margin-left: 0; /* this will reset when sidebar is closed */
   transition: margin-left 0.3s ease;
 }
 

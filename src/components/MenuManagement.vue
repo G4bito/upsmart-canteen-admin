@@ -56,7 +56,6 @@
           </div>
         </div>
 
-
         <div v-if="item.stock < 20" class="stock-warning">
           ⚠️ Low Stock Alert
         </div>
@@ -114,93 +113,6 @@ export default {
   color: var(--upang-green);
   letter-spacing: -2px;
   margin: 0;
-}
-
-.btn-add-item {
-  background: var(--upang-green);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-add-item:hover {
-  background: var(--upang-dark-green);
-  transform: translateY(-2px);
-}
-
-.add-item-form {
-  background: white;
-  border: 3px solid var(--charcoal);
-  padding: 24px;
-  border-radius: 8px;
-  margin-bottom: 32px;
-}
-
-.add-item-form h3 {
-  margin: 0 0 16px 0;
-  color: var(--upang-green);
-  font-family: 'Archivo Black', sans-serif;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.add-item-form input,
-.add-item-form select {
-  padding: 12px;
-  border: 2px solid var(--charcoal);
-  border-radius: 4px;
-  font-family: 'Work Sans', sans-serif;
-  font-size: 14px;
-}
-
-.add-item-form input:focus,
-.add-item-form select:focus {
-  outline: none;
-  border-color: var(--upang-green);
-  background: rgba(45, 80, 22, 0.05);
-}
-
-.form-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-submit {
-  background: var(--upang-green);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-submit:hover {
-  background: var(--upang-dark-green);
-}
-
-.btn-cancel {
-  background: transparent;
-  border: 2px solid var(--charcoal);
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-cancel:hover {
-  background: var(--cream);
 }
 
 .menu-stats {

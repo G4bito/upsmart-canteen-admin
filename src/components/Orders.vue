@@ -30,8 +30,8 @@
           <thead>
             <tr>
               <th>Order ID</th>
-              <th>Student</th>
-              <th>Student ID</th>
+              <th>Teacher</th>
+              <th>Teacher ID</th>
               <th>Items</th>
               <th>Amount</th>
               <th>Time</th>
@@ -42,8 +42,8 @@
           <tbody>
             <tr v-for="order in filteredOrders" :key="order.id" :class="['order-row', order.status]">
               <td class="order-id-cell">{{ order.id }}</td>
-              <td>{{ order.student }}</td>
-              <td class="student-id">{{ order.studentId }}</td>
+              <td>{{ order.teacher }}</td>
+              <td class="teacher-id">{{ order.teacherId }}</td>
               <td class="items-cell">
                 <div v-for="item in order.items" :key="item.name" class="item-badge">
                   {{ item.name }} x{{ item.qty }}
@@ -89,7 +89,7 @@ export default {
       if (!props.orders) return [];
       return props.orders.filter(o => {
         if (filterStatus.value !== 'all' && o.status !== filterStatus.value) return false;
-        if (searchQuery.value && !o.student.toLowerCase().includes(searchQuery.value.toLowerCase())) return false;
+        if (searchQuery.value && !o.teacher.toLowerCase().includes(searchQuery.value.toLowerCase())) return false;
         return true;
       });
     });
@@ -259,7 +259,7 @@ tbody tr:hover {
   color: var(--upang-green);
 }
 
-.student-id {
+.teacher-id {
   font-family: 'Courier New', monospace;
   font-size: 12px;
   color: var(--mid-gray);

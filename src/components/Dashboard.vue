@@ -49,7 +49,7 @@
               <div class="order-info">
                 <div class="order-id">{{ order.id }}</div>
                 <div class="order-details">
-                  <p class="student-name">{{ order.student }}</p>
+                  <p class="teacher-name">{{ order.teacher }}</p>
                   <p class="order-items">{{ order.items.map(i => i.name).join(' + ') }}</p>
                   <p class="order-time">{{ order.time }}</p>
                 </div>
@@ -269,7 +269,7 @@ export default {
   flex: 1;
 }
 
-.student-name {
+.teacher-name {
   font-weight: 600;
   color: var(--charcoal);
   margin: 0 0 4px 0;
