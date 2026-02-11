@@ -14,6 +14,7 @@
           :stats="dashboardStats"
           :recent-orders="recentOrders"
           :top-items="topItems"
+          @navigate="activeMenu = $event"
         />
         <Orders 
           v-if="activeMenu === 'orders'"
@@ -147,8 +148,11 @@ export default {
     };
 
     const addMenuItem = (newItem) => {
-      newItem.id = Math.max(...menuItems.value.map(i => i.id), 0) + 1;
-      menuItems.value.push(newItem);
+      const newId = Math.max(...menuItems.value.map(i => i.id || 0), 0) + 1;
+      menuItems.value.push({
+        ...newItem,
+        id: newId
+      });
     };
 
     const saveSettings = (settings) => {

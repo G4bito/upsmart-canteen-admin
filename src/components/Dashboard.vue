@@ -74,15 +74,6 @@
         </div>
       </div>
 
-      <div class="quick-actions">
-        <h3 class="quick-actions-title">Quick Actions</h3>
-        <div class="actions-grid">
-          <button class="action-btn action-orders"><span class="action-emoji">🛒</span> View All Orders</button>
-          <button class="action-btn action-menu"><span class="action-emoji">🍽️</span> Manage Menu</button>
-          <button class="action-btn action-stock"><span class="action-emoji">📦</span> Check Inventory</button>
-          <button class="action-btn action-settings"><span class="action-emoji">⚙️</span> Settings</button>
-        </div>
-      </div>
     </div>
   </section>
 </template>
@@ -374,71 +365,7 @@ export default {
   text-align: right;
 }
 
-.quick-actions {
-  background: white;
-  border: 3px solid var(--charcoal);
-  border-radius: 8px;
-  padding: 24px;
-}
 
-.quick-actions-title {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 19px;
-  color: var(--upang-green);
-  margin: 0 0 16px 0;
-  letter-spacing: -0.5px;
-}
-
-.actions-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.action-btn {
-  padding: 16px;
-  border: 2px solid var(--charcoal);
-  background: transparent;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.action-emoji {
-  font-size: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.action-btn:hover {
-  transform: translateY(-3px);
-}
-
-.action-orders:hover {
-  background: rgba(45, 80, 22, 0.1);
-  border-color: var(--upang-green);
-}
-
-.action-menu:hover {
-  background: rgba(200, 169, 97, 0.1);
-  border-color: var(--upang-gold);
-}
-
-.action-stock:hover {
-  background: rgba(76, 175, 80, 0.1);
-  border-color: #4CAF50;
-}
-
-.action-settings:hover {
-  background: rgba(33, 150, 243, 0.1);
-  border-color: #2196F3;
-}
 
 @media (max-width: 1200px) {
   .stats-grid {
@@ -465,10 +392,6 @@ export default {
 
   .section-title {
     font-size: 2.5rem;
-  }
-
-  .actions-grid {
-    grid-template-columns: 1fr;
   }
 }
 </style>
