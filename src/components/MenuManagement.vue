@@ -114,16 +114,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
-  border-bottom: 4px solid var(--upang-green);
+  border-bottom: 4px solid #2D5016;
   padding-bottom: 16px;
+  background: transparent;
 }
 
 .section-title {
   font-family: 'Archivo Black', sans-serif;
   font-size: 48px;
-  color: var(--upang-green);
+  color: #2D5016;
   letter-spacing: -2px;
   margin: 0;
+  font-weight: 900;
 }
 
 .menu-stats {

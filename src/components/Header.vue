@@ -10,7 +10,7 @@
       </div>
 
       <nav class="nav-links">
-        <a href="#" class="active">DASHBOARD</a>
+        <a class="active">DASHBOARD</a>
       </nav>
 
       <div class="user-section">
@@ -52,6 +52,7 @@ export default {
 }
 
 .logo-area {
+  margin-top: 18px;
   display: flex;
   align-items: center;
   gap: 19px;
@@ -64,6 +65,7 @@ export default {
 }
 
 .brand {
+  margin-top: 18px;
   font-family: 'Archivo Black', sans-serif;
   font-size: 29px;
   color: var(--upang-green);
@@ -81,6 +83,7 @@ export default {
 }
 
 .nav-links {
+  margin-top: 18px;
   display: flex;
   gap: 40px;
   justify-self: center;
@@ -110,6 +113,7 @@ export default {
 }
 
 .user-section {
+  margin-top: 18px;
   display: flex;
   align-items: center;
   gap: 24px;
