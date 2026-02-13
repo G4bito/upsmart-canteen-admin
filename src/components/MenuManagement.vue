@@ -47,7 +47,7 @@
       </button>
       <div v-for="item in filteredMenuItems" :key="item.id" class="menu-item-card">
         <div class="item-image-container">
-          <img v-if="item.image" :src="item.image" :alt="item.name" class="item-image">
+          <img v-if="item.image" :src="item.image" :alt="item.name" class="item-image"></img>
           <div v-else class="item-image-placeholder">
             📸 No Image
           </div>
