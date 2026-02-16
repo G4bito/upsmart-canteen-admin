@@ -1,43 +1,50 @@
 <template>
   <div class="App">
-    <TopBar @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-    <div class="admin-layout">
-      <Sidebar 
-        :activeMenu="activeMenu" 
-        :isOpen="sidebarOpen"
-        @change-menu="activeMenu = $event"
-      />
-      <main :class="['admin-content', { 'sidebar-open': sidebarOpen }]">
-        <Header />
-        <Dashboard 
-          v-if="activeMenu === 'dashboard'"
-          :stats="dashboardStats"
-          :recent-orders="recentOrders"
-          :top-items="topItems"
-          @navigate="activeMenu = $event"
+    <!-- Login Page -->
+    <Login v-if="!isLoggedIn" @login="handleLogin" />
+
+    <!-- Admin Dashboard -->
+    <template v-else>
+      <TopBar @toggle-sidebar="sidebarOpen = !sidebarOpen" />
+      <div class="admin-layout">
+        <Sidebar 
+          :activeMenu="activeMenu" 
+          :isOpen="sidebarOpen"
+          @change-menu="activeMenu = $event"
         />
-        <Orders 
-          v-if="activeMenu === 'orders'"
-          :orders="allOrders"
-          @update-status="updateOrderStatus"
-          @cancel-order="cancelOrder"
-        />
-        <MenuManagement 
-          v-if="activeMenu === 'menu'"
-          :menu-items="menuItems"
-          @edit-item="editMenuItem"
-          @delete-item="deleteMenuItem"
-          @add-item="addMenuItem"
-        />
-        <Analytics v-if="activeMenu === 'analytics'" :stats="null" />
-        <Settings v-if="activeMenu === 'settings'" @save-settings="saveSettings" />
-      </main>
-    </div>
+        <main :class="['admin-content', { 'sidebar-open': sidebarOpen }]">
+          <Header @logout="handleLogout" />
+          <Dashboard 
+            v-if="activeMenu === 'dashboard'"
+            :stats="dashboardStats"
+            :recent-orders="recentOrders"
+            :top-items="topItems"
+            @navigate="activeMenu = $event"
+          />
+          <Orders 
+            v-if="activeMenu === 'orders'"
+            :orders="allOrders"
+            @update-status="updateOrderStatus"
+            @cancel-order="cancelOrder"
+          />
+          <MenuManagement 
+            v-if="activeMenu === 'menu'"
+            :menu-items="menuItems"
+            @edit-item="editMenuItem"
+            @delete-item="deleteMenuItem"
+            @add-item="addMenuItem"
+          />
+          <Analytics v-if="activeMenu === 'analytics'" :stats="null" />
+          <Settings v-if="activeMenu === 'settings'" @save-settings="saveSettings" />
+        </main>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import { ref, computed } from 'vue'
+import Login from './components/Login.vue'
 import TopBar from './components/TopBar.vue'
 import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue'
@@ -49,6 +56,7 @@ import Settings from './components/Settings.vue'
 
 export default {
   components: {
+    Login,
     TopBar,
     Header,
     Sidebar,
@@ -59,6 +67,7 @@ export default {
     Settings
   },
   setup() {
+    const isLoggedIn = ref(false);
     const activeMenu = ref('dashboard');
     const sidebarOpen = ref(true);
 
@@ -160,7 +169,18 @@ export default {
       alert('Settings saved successfully!');
     };
 
+    const handleLogin = (credentials) => {
+      console.log('Login attempt with email:', credentials.email);
+      isLoggedIn.value = true;
+    };
+
+    const handleLogout = () => {
+      isLoggedIn.value = false;
+      console.log('User logged out');
+    };
+
     return {
+      isLoggedIn,
       activeMenu,
       sidebarOpen,
       menuItems,
@@ -173,7 +193,9 @@ export default {
       editMenuItem,
       deleteMenuItem,
       addMenuItem,
-      saveSettings
+      saveSettings,
+      handleLogin,
+      handleLogout
     };
   }
 }

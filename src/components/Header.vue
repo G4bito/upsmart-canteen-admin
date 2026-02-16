@@ -15,7 +15,13 @@
 
       <div class="user-section">
         <div class="profile-section">
-          <div class="profile-circle">👤</div>
+          <div class="profile-circle" @click="toggleDropdown">👤</div>
+          <div v-if="isDropdownOpen" class="profile-dropdown">
+            <div class="dropdown-item" @click="toggleDropdown">Edit Profile</div>
+            <div class="dropdown-item" @click="toggleDropdown">Settings</div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item logout-btn" @click="handleLogout">Logout</div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,8 +33,24 @@ import { ref } from 'vue'
 
 export default {
   name: 'Header',
-  setup() {
-    return {};
+  emits: ['logout'],
+  setup(props, { emit }) {
+    const isDropdownOpen = ref(false)
+
+    const toggleDropdown = () => {
+      isDropdownOpen.value = !isDropdownOpen.value
+    }
+
+    const handleLogout = () => {
+      isDropdownOpen.value = false
+      emit('logout')
+    }
+
+    return {
+      isDropdownOpen,
+      toggleDropdown,
+      handleLogout
+    }
   }
 }
 </script>
@@ -153,72 +175,87 @@ export default {
   background: var(--upang-dark-green);
 }
 
-.profile-menu {
+.profile-dropdown {
   position: absolute;
   top: 100%;
   right: 0;
-  background: white;
-  border: 2px solid var(--upang-green);
-  border-radius: 4px;
-  min-width: 180px;
+  background: var(--off-white);
+  border: none;
+  border-radius: 12px;
+  min-width: 200px;
   margin-top: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(45, 80, 22, 0.12);
   z-index: 1000;
-  opacity: 0;
-  transform: translateY(-10px) scale(0.95);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
+  overflow: hidden;
+  animation: slideDown 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-.profile-menu.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-
-.profile-menu::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  right: 20px;
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 0px solid transparent;
-  border-bottom: 12px solid var(--upang-green);
-}
-
-.profile-menu::after {
+.profile-dropdown::before {
   content: '';
   position: absolute;
   top: -8px;
-  right: 22px;
+  right: 16px;
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 0px solid transparent;
-  border-bottom: 10px solid white;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--off-white);
 }
 
-.profile-menu a {
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
   display: block;
-  padding: 12px 16px;
+  width: 100%;
+  padding: 13px 16px;
   color: var(--charcoal);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
-  border-bottom: 1px solid #f0f0f0;
-  transition: all 0.2s ease;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
 }
 
-.profile-menu a:hover {
-  background: var(--cream);
+.dropdown-item:first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.dropdown-item:hover {
+  background: rgba(45, 80, 22, 0.06);
   color: var(--upang-green);
   padding-left: 20px;
 }
 
-.profile-menu a:last-child {
-  border-bottom: none;
+.logout-btn {
+  color: #d32f2f;
+  font-weight: 600;
+  border-radius: 0 0 12px 12px;
+}
+
+.logout-btn:hover {
+  background: rgba(211, 47, 47, 0.08);
+  color: #c62828;
+  padding-left: 20px;
+}
+
+.dropdown-divider {
+  margin: 6px 12px;
+  height: 1px;
+  background: rgba(45, 80, 22, 0.1);
+  border: none;
 }
 
 @media (max-width: 768px) {
@@ -239,5 +276,6 @@ export default {
   .status-indicator {
     display: none;
   }
+  
 }
 </style>
