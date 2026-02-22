@@ -67,7 +67,7 @@ import { ref } from 'vue'
 
 export default {
   name: 'Login',
-  emits: ['login'],
+  emits: ['login', 'admin-login'],
   setup(props, { emit }) {
     const email = ref('')
     const password = ref('')
@@ -83,14 +83,31 @@ export default {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000))
 
-        // TODO: Replace with actual authentication logic, for testing palang to
-        if (email.value && password.value) {
-          emit('login', {
+        if (!email.value || !password.value) {
+          errorMessage.value = 'Please enter both email and password'
+          isLoading.value = false
+          return
+        }
+
+        // Check if user is admin
+        const ADMIN_EMAIL = 'admin@upang.com'
+        const ADMIN_PASSWORD = '12345'
+
+        if (email.value.toLowerCase() === ADMIN_EMAIL && password.value === ADMIN_PASSWORD) {
+          // Admin login - emit admin-login event
+          emit('admin-login', {
             email: email.value,
-            rememberMe: rememberMe.value
+            role: 'admin',
+            rememberMe: rememberMe.value,
+            loginTime: new Date().toISOString()
           })
         } else {
-          errorMessage.value = 'Please enter both email and password'
+          // Regular user login
+          emit('login', {
+            email: email.value,
+            rememberMe: rememberMe.value,
+            loginTime: new Date().toISOString()
+          })
         }
       } catch (error) {
         errorMessage.value = 'Login failed. Please try again.'

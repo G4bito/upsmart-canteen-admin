@@ -1,9 +1,12 @@
 <template>
-  <div class="App">
+  <div class="App" :class="{ 'admin-mode': isAdminLoggedIn }">
     <!-- Login Page -->
-    <Login v-if="!isLoggedIn" @login="handleLogin" />
+    <Login v-if="!isLoggedIn && !isAdminLoggedIn" @login="handleLogin" @admin-login="handleAdminLogin" />
 
-    <!-- Admin Dashboard -->
+    <!-- Admin Dashboard (React Component) -->
+    <AdminAppWrapper v-else-if="isAdminLoggedIn" @logout="handleAdminLogout" />
+
+    <!-- Regular User Dashboard -->
     <template v-else>
       <TopBar @toggle-sidebar="sidebarOpen = !sidebarOpen" />
       <div class="admin-layout">
@@ -44,6 +47,7 @@
 
 <script>
 import { ref, computed } from 'vue'
+import AdminAppWrapper from './components/AdminAppWrapper.vue'
 import Login from './components/Login.vue'
 import TopBar from './components/TopBar.vue'
 import Header from './components/Header.vue'
@@ -56,6 +60,7 @@ import Settings from './components/Settings.vue'
 
 export default {
   components: {
+    AdminAppWrapper,
     Login,
     TopBar,
     Header,
@@ -68,6 +73,7 @@ export default {
   },
   setup() {
     const isLoggedIn = ref(false);
+    const isAdminLoggedIn = ref(false);
     const activeMenu = ref('dashboard');
     const sidebarOpen = ref(true);
 
@@ -174,13 +180,34 @@ export default {
       isLoggedIn.value = true;
     };
 
+    const handleAdminLogin = (adminCredentials) => {
+      console.log('Admin login with email:', adminCredentials.email);
+      // Store admin auth in localStorage so React can read it
+      localStorage.setItem('adminAuth', JSON.stringify({
+        email: adminCredentials.email,
+        role: 'admin',
+        loginTime: adminCredentials.loginTime
+      }))
+      isAdminLoggedIn.value = true;
+    };
+
     const handleLogout = () => {
       isLoggedIn.value = false;
+      isAdminLoggedIn.value = false;
+      localStorage.removeItem('adminAuth');
+      localStorage.removeItem('userAuth');
       console.log('User logged out');
+    };
+
+    const handleAdminLogout = () => {
+      isAdminLoggedIn.value = false;
+      localStorage.removeItem('adminAuth');
+      console.log('Admin logged out');
     };
 
     return {
       isLoggedIn,
+      isAdminLoggedIn,
       activeMenu,
       sidebarOpen,
       menuItems,
@@ -195,7 +222,9 @@ export default {
       addMenuItem,
       saveSettings,
       handleLogin,
-      handleLogout
+      handleAdminLogin,
+      handleLogout,
+      handleAdminLogout
     };
   }
 }
@@ -206,7 +235,13 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 48px;
+}
+
+.App.admin-mode {
+  height: 100vh;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .admin-layout {
@@ -221,7 +256,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 0; /* this will reset when sidebar is closed */
+  margin-left: 0;
   transition: margin-left 0.3s ease;
 }
 
