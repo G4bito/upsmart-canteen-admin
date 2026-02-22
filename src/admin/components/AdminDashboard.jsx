@@ -88,15 +88,6 @@ function DashboardOverview() {
           </div>
         </div>
       </div>
-
-      <div className="admin-quick-actions">
-        <h3>Quick Actions</h3>
-        <div className="admin-action-buttons">
-          <button className="admin-action-btn">Generate Report</button>
-          <button className="admin-action-btn">View Analytics</button>
-          <button className="admin-action-btn">System Settings</button>
-        </div>
-      </div>
     </div>
   )
 }
