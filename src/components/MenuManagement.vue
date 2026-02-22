@@ -433,7 +433,7 @@ export default {
   background: white;
   border: 3px solid var(--charcoal);
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px;
   transition: all 0.3s;
   position: relative;
   display: flex;
