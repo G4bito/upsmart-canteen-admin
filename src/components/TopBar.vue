@@ -23,7 +23,7 @@ export default {
   background: #1a3308;
   color: #C8A961;
   padding: 12px 16px;
-  font-size: 12px;
+  font-size: 12px;;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;

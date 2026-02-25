@@ -1,5 +1,4 @@
 import React, { useState, createContext, useContext } from 'react'
-import AdminLogin from './components/AdminLogin'
 import AdminDashboard from './components/AdminDashboard'
 import './styles/admin.css'
 
@@ -14,7 +13,7 @@ export const useAdminAuth = () => {
   return context
 }
 
-export default function AdminApp() {
+export default function AdminApp({ onLogout }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [adminUser, setAdminUser] = useState(null)
 
@@ -29,6 +28,10 @@ export default function AdminApp() {
     setIsAuthenticated(false)
     setAdminUser(null)
     localStorage.removeItem('adminAuth')
+    // Call the Vue parent component's logout handler to redirect to Login.vue
+    if (onLogout) {
+      onLogout()
+    }
   }
 
   // Check for existing auth on mount
@@ -55,11 +58,7 @@ export default function AdminApp() {
 
   return (
     <AdminAuthContext.Provider value={authContextValue}>
-      {isAuthenticated ? (
-        <AdminDashboard />
-      ) : (
-        <AdminLogin onLogin={handleAdminLogin} />
-      )}
+      <AdminDashboard />
     </AdminAuthContext.Provider>
   )
 }

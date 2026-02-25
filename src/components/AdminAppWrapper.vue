@@ -11,16 +11,21 @@ import '../admin/styles/admin.css'
 
 export default defineComponent({
   name: 'AdminAppWrapper',
-  setup() {
+  emits: ['logout'],
+  setup(props, { emit }) {
     const reactRootRef = ref(null)
     let rootInstance = null
+
+    const handleAdminLogout = () => {
+      emit('logout')
+    }
 
     onMounted(() => {
       console.log('AdminAppWrapper mounted, reactRootRef:', reactRootRef.value)
       if (reactRootRef.value) {
         try {
           rootInstance = ReactDOM.createRoot(reactRootRef.value)
-          rootInstance.render(React.createElement(AdminApp))
+          rootInstance.render(React.createElement(AdminApp, { onLogout: handleAdminLogout }))
           console.log('React AdminApp mounted successfully')
         } catch (error) {
           console.error('Failed to mount React app:', error)

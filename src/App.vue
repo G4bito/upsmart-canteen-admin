@@ -4,7 +4,7 @@
     <Login v-if="!isLoggedIn && !isAdminLoggedIn" @login="handleLogin" @admin-login="handleAdminLogin" />
 
     <!-- Admin Dashboard (React Component) -->
-    <AdminAppWrapper v-else-if="isAdminLoggedIn" @logout="handleAdminLogout" />
+    <AdminAppWrapper v-else-if="isAdminLoggedIn" @logout="handleAdminDashboardLogout" />
 
     <!-- Regular User Dashboard -->
     <template v-else>
@@ -196,7 +196,13 @@ export default {
       isAdminLoggedIn.value = false;
       localStorage.removeItem('adminAuth');
       localStorage.removeItem('userAuth');
-      console.log('User logged out');
+      console.log('Admin logged out, redirecting to login');
+    };
+
+    const handleAdminDashboardLogout = () => {
+      isAdminLoggedIn.value = false;
+      localStorage.removeItem('adminAuth');
+      console.log('Admin logged out from dashboard, redirecting to login');
     };
 
     const handleAdminLogout = () => {
